@@ -1,5 +1,7 @@
+import CV from "../pages/CV/CV";
+
 const App = () => {
-  return 1;
+  return <CV />;
 };
 
 export default App;
