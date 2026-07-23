@@ -1,0 +1,499 @@
+/* ══════════════════════════════════════════════════════
+   PAGE 1 — 2026 Premium Resume Design
+   Design philosophy:
+   · Spatial hierarchy over decoration
+   · Typography does the heavy lifting
+   · Accent used with maximum restraint
+   · Every px has a reason
+══════════════════════════════════════════════════════ */
+
+/* ── TOP RULE ────────────────────────────────────────
+   3px indigo stripe — the visual "signature" of this
+   document. Seen before anything else. Sets the tone. */
+.topRule {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 60%, transparent) 100%
+  );
+}
+
+/* ── MASTHEAD ─────────────────────────────────────── */
+.masthead {
+  padding: 0 var(--px);
+}
+
+.mastheadInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 32px 0 28px;
+  border-bottom: 1px solid var(--ink-08);
+  gap: 24px;
+}
+
+/* ── NAME BLOCK ── */
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* The defining typographic device of this resume.
+   The split-weight name technique:
+   · "Murad" — weight 200, ink-40 — soft, recessive, almost a ghost
+   · "Gazymagomedov" — weight 900, ink-100 — commands full attention
+   · Together: the eye lands on the surname instantly, then re-reads
+     the first name — creating a brief, memorable double-take.
+   · -3px tracking at 56px locks the letters into one cohesive unit
+   · This is the first thing every recruiter sees. It must be unforgettable. */
+.name {
+  margin: 0;
+  font-size: 54px;
+  line-height: 0.96;
+  letter-spacing: -3px;
+  display: block;
+  white-space: nowrap;
+}
+
+.nameFirst {
+  font-weight: 200;
+  color: var(--ink-25);
+  letter-spacing: -2px;
+}
+
+.nameLast {
+  font-weight: 900;
+  color: var(--ink-100);
+  letter-spacing: -3px;
+}
+
+/* ── Role row ── */
+.roleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* The indigo dot — a micro-element that punches above its weight.
+   5px square rotated 45° = diamond. More angular than a circle.
+   Signals precision, not softness. */
+.roleDot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.roleText {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3.5px;
+  color: var(--ink-60);
+  line-height: 1;
+}
+
+.roleSep {
+  display: block;
+  width: 1px;
+  height: 11px;
+  background: var(--ink-15);
+  flex-shrink: 0;
+}
+
+.roleLocation {
+  font-size: 8.5px;
+  font-weight: 400;
+  color: var(--ink-25);
+  letter-spacing: 0.3px;
+}
+
+/* ── CONTACT BLOCK ── */
+/* Placed top-right, baseline-aligned with the name.
+   The "Contact" label establishes a micro-hierarchy:
+   section label → value. This pattern repeats throughout. */
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  font-style: normal;
+  flex-shrink: 0;
+  padding-bottom: 2px;
+}
+
+.contactLabel {
+  font-size: 6.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--ink-15);
+  margin-bottom: 4px;
+}
+
+.contactItem {
+  font-size: 9.5px;
+  font-weight: 400;
+  color: var(--ink-40);
+  letter-spacing: 0.15px;
+  line-height: 1.5;
+}
+
+/* ── PROFESSIONAL SUMMARY ─────────────────────────
+   The only section with no section title.
+   It doesn't need one — it earns attention by
+   its position (immediately below the name) and
+   its opening clause weight. */
+.summarySection {
+  padding: 22px var(--px) 20px;
+  border-bottom: 1px solid var(--ink-08);
+  position: relative;
+}
+
+/* Vertical accent line — 2px left edge marker.
+   Ties the summary visually to the masthead accent.
+   Only used here, not repeated = stays special. */
+.summarySection::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--px) - 16px);
+  top: 22px;
+  bottom: 20px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 0%, transparent) 100%
+  );
+  border-radius: 2px;
+}
+
+.summary {
+  font-size: 11.5px;
+  line-height: 1.88;
+  color: var(--ink-60);
+  font-weight: 400;
+  letter-spacing: 0.08px;
+  max-width: 640px;
+}
+
+/* The opening line reads at slightly higher contrast
+   to create a natural entry point for the reader's eye. */
+.summaryLead {
+  font-weight: 600;
+  color: var(--ink-80);
+  font-size: 11.5px;
+  line-height: 1.88;
+  letter-spacing: 0.08px;
+}
+
+/* ── KEY METRICS ──────────────────────────────────
+   The four career numbers. These are the highest-
+   priority content on the page after the name.
+   Recruiters scan: Name → these numbers → Company → Done.
+   Every visual decision here serves one goal: make
+   the numbers land instantly and credibly.
+
+   Grid breakdown: 4 equal columns with a left-heavy
+   first cell (extra padding) to align with the name
+   block above. The tinted background creates a clear
+   "data zone" reading — like a dashboard card row. */
+.metricsSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--ink-02);
+  border-bottom: 1px solid var(--ink-08);
+  position: relative;
+}
+
+/* Subtle top-of-metrics indigo wash — barely visible,
+   just enough to feel intentional and premium. */
+.metricsSection::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent-mid);
+}
+
+.metricCell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 18px;
+  border-right: 1px solid var(--ink-08);
+  position: relative;
+
+  &:first-child {
+    padding-left: var(--px);
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+/* The number. Maximum optical weight on this page
+   after the last name. tabular-nums for alignment.
+   Indigo matches the top rule — completing the accent circuit. */
+.metricNum {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.metricLabel {
+  font-size: 8px;
+  font-weight: 400;
+  color: var(--ink-40);
+  line-height: 1.6;
+  letter-spacing: 0.05px;
+}
+
+/* ── SECTION TITLE — shared token ────────────────
+   Micro-label style: caps, wide tracking, muted.
+   The contrast between this and the content below
+   it creates the visual hierarchy that guides the eye. */
+.sectionTitle {
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--ink-15);
+  margin: 0;
+}
+
+/* ── EXPERIENCE ───────────────────────────────────
+   The core section. Most recruiter attention lands here.
+   Design goal: maximum density of signal, zero noise.
+   Each job block is self-contained but visually connected
+   by the company accent color and the horizontal divider. */
+.section {
+  padding: 22px var(--px) 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.expList {
+  display: flex;
+  flex-direction: column;
+}
+
+.expBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.expHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Role title: 700 weight, not 800.
+   800 would compete with the name. 700 = confident authority. */
+.expRole {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--ink-90);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.expSubline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Company: ALL CAPS, accent indigo, wide tracking.
+   This is the second most visible text in each job block
+   after the role title. Accent makes it distinct from
+   the ink-60 body text but not as heavy as the name. */
+.expCompany {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+}
+
+.expSubDot {
+  display: block;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--ink-15);
+  flex-shrink: 0;
+}
+
+.expLocation {
+  font-size: 8.5px;
+  font-weight: 400;
+  color: var(--ink-25);
+  letter-spacing: 0.2px;
+}
+
+.expPeriod {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--ink-40);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.3px;
+  padding-top: 2px;
+}
+
+/* Achievement bullets — the actual content.
+   10.5px, 1.72 line-height: high information density
+   while remaining readable on print.
+   The bullet is a 3px circle, ink-15 — nearly invisible.
+   The content should do the talking, not the bullet. */
+.achList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 10.5px;
+    line-height: 1.72;
+    color: var(--ink-60);
+    font-weight: 400;
+    letter-spacing: 0.05px;
+  }
+}
+
+.achBullet {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-15);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* Divider between job blocks — 1px, ink-08.
+   So subtle it barely registers consciously,
+   but creates a clean visual break that stops
+   the blocks from bleeding together. */
+.expDivider {
+  height: 1px;
+  background: var(--ink-04);
+  margin: 12px 0 0;
+}
+
+/* ── TECHNICAL SKILLS ─────────────────────────────
+   Final section on page 1. Intentionally compact.
+   Skills are read in 3 seconds. The recruiter is
+   scanning for keyword matches, not reading.
+   Grid = easy scan in Z-pattern. Pills = modern,
+   clean, and ATS-proof (text stays selectable). */
+.skillsSection {
+  padding: 18px var(--px) 54px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px 20px;
+}
+
+.skillGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skillCat {
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--ink-25);
+  margin: 0;
+}
+
+.skillPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Pills: refined, not decorative.
+   Pill shape (100px radius) on a near-white bg with
+   a faint border. Reads as "chip" — modern and clean.
+   No color fill — avoids looking like a dashboard badge. */
+.pill {
+  font-size: 8.5px;
+  font-weight: 500;
+  color: var(--ink-60);
+  background: var(--ink-02);
+  border: 1px solid var(--ink-08);
+  padding: 3px 9px;
+  border-radius: 100px;
+  letter-spacing: 0.05px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* ── FOOTER ───────────────────────────────────────
+   Absolute-positioned, sits 1px above page bottom.
+   Left: full name (ATS identifier).
+   Right: page indicator (muted — not important).
+   Everything here is visual noise from a content POV,
+   so it's styled at maximum opacity minimum: ink-15. */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px var(--px);
+  border-top: 1px solid var(--ink-04);
+}
+
+.footerName {
+  font-size: 6.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--ink-15);
+}
+
+.footerPag {
+  font-size: 6.5px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--ink-15);
+  font-variant-numeric: tabular-nums;
+}

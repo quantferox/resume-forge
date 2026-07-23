@@ -1,7 +1,91 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@use "./assets/scss/reset.scss";
+
+/* ─────────────────────────────────────────────────
+   TYPEFACE — Inter Variable (industry standard 2026)
+   Full variable axis: weight 100–900, optical sizes
+───────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+/* ─────────────────────────────────────────────────
+   DESIGN TOKENS — 2026 Premium Tier
+───────────────────────────────────────────────── */
+:root {
+  /* ── Ink scale — near-black, not pure black
+     Pure black (#000) feels harsh on print.
+     #0a0a0f reads as "premium dark" — like Apple's display defaults. */
+  --ink-100: #0a0a0f;   /* name, h1                   */
+  --ink-90:  #111118;   /* strong headings            */
+  --ink-80:  #1c1c24;   /* section titles, role       */
+  --ink-60:  #3a3a4a;   /* body text                  */
+  --ink-40:  #6b6b7e;   /* secondary text             */
+  --ink-25:  #9898a8;   /* muted labels               */
+  --ink-15:  #c2c2ce;   /* dividers, rules            */
+  --ink-08:  #e0e0e8;   /* subtle borders             */
+  --ink-04:  #f0f0f5;   /* tinted background          */
+  --ink-02:  #f7f7fb;   /* near-white surface         */
+  --paper:   #ffffff;
+
+  /* ── Accent — deep slate-indigo
+     Not green (overused in "dev" resumes now).
+     Not blue (generic).
+     Slate-indigo = Linear, Vercel, Arc Browser palette territory.
+     Feels premium, technical, considered.
+     Usage budget: top rule · metric numbers · company names · tech badges.
+     Nowhere else. Restraint is the luxury. */
+  --accent:        #4f46e5;   /* indigo-600              */
+  --accent-hover:  #4338ca;   /* indigo-700              */
+  --accent-mid:    rgba(79, 70, 229, 0.12);
+  --accent-soft:   rgba(79, 70, 229, 0.06);
+  --accent-ultra:  rgba(79, 70, 229, 0.035);
+
+  /* ── Type system */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  /* ── Layout geometry */
+  --page-w:     794px;
+  --page-h:    1123px;
+  --px:          52px;   /* horizontal page padding       */
+  --px-inner:    48px;   /* for nested / card elements    */
+
+  /* ── Motion (print: always 0) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────────── */
+html, body {
+  background: #0e0e12;
+  font-family: var(--font);
+  color: var(--ink-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* OpenType features: kerning, ligatures, contextual alternates,
+     stylistic set 1 (Inter's straight-leg 'a'), tabular numerals */
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "cv01" 1, "ss01" 1, "tnum" 0;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 64px 24px 96px;
+}
+
+/* ─────────────────────────────────────────────────
+   PRINT OVERRIDES
+───────────────────────────────────────────────── */
+@media print {
+  html, body {
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  #root {
+    padding: 0;
+    gap: 0;
+    align-items: flex-start;
+  }
 }

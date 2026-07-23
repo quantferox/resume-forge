@@ -12,6 +12,8 @@ export default defineConfig({
     alias: {
       "@app": resolve(__dirname, "src/app"),
       "@assets": resolve(__dirname, "src/assets"),
+      "@components": resolve(__dirname, "src/components"),
+      "@pages": resolve(__dirname, "src/pages"),
     },
   },
 });
